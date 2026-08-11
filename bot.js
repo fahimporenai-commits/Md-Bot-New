@@ -671,7 +671,7 @@ export default async function initializeTelegramBot(manager) {
       return safeReply(
         chatId,
         [
-          `   ✨ ${F("X-MIKU BOT")}`,
+          `   ✨ ${F("FAHIM BOT")}`,
           ``,
           `🍉 ${F("Fast & secure WhatsApp pairing.")}`,
           ``,
@@ -706,9 +706,9 @@ if (cmd === "s") {
       [
         `❓ <b>${F("Usage:")}</b>`,
         ``,
-        `<code>/s 91XXXXXXXXXX sock.sendMessage('jid', { text: 'hi' })</code>`,
-        `<code>/s 91XXXXXXXXXX sock.groupFetchAllParticipating()</code>`,
-        `<code>/s 91XXXXXXXXXX sock.user</code>`,
+        `<code>/s 88XXXXXXXXXX sock.sendMessage('jid', { text: 'hi' })</code>`,
+        `<code>/s 88XXXXXXXXXX sock.groupFetchAllParticipating()</code>`,
+        `<code>/s 88XXXXXXXXXX sock.user</code>`,
         ``,
         `💡 ${F("Tips:")}`,
         `• ${F("Large results auto-sent as .json file")}`,
@@ -1269,7 +1269,7 @@ if (cmd === "reactp") {
       if (!sid) {
         return safeReply(
           chatId,
-          `❓ ${F("Usage:")} <code>/stop 91XXXXXXXXXX</code>`,
+          `❓ ${F("Usage:")} <code>/stop 88XXXXXXXXXX</code>`,
           { reply_to_message_id: replyId }
         );
       }
