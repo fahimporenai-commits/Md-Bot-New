@@ -1,0 +1,207 @@
+import { Module } from "../lib/plugins.js";
+import axios from "axios";
+import * as cheerio from "cheerio";
+import { randomInt } from "crypto";
+import {
+  proto,
+  generateWAMessageFromContent,
+  prepareWAMessageMedia,
+} from "baileys";
+
+Module({
+  command: "porn",
+  package: "pornvideo",
+  description: "dasi porn video",
+})(async (message, match) => {
+  try {
+    const sock = message.conn;
+    const from = message.from;
+    const msg = message.raw;
+
+    await sock.sendMessage(from, {
+      react: {
+        text: "🥵",
+        key: msg.key,
+      },
+    });
+
+    const fetchItems = async () => {
+      const num = randomInt(1, 221);
+      const pageUrl = `https://desibf.com/page/${num}`;
+
+      const { data: html } = await axios.get(pageUrl, {
+        timeout: 15000,
+      });
+
+      const $ = cheerio.load(html);
+      const items = [];
+
+      $("article.thumb-block.video-preview-item").each((i, el) => {
+        const a = $(el).find("a");
+        const title = $(el).find("span.title").text().trim();
+        const thumb =
+          $(el).attr("data-main-thumb") ||
+          $(el).find("img.video-main-thumb").attr("src");
+        const link = a.attr("href");
+        const duration = $(el).find("span.duration").text().trim();
+        const views = $(el).find("span.views").text().trim();
+
+        if (title && link) {
+          items.push({ title, thumb, link, duration, views });
+        }
+      });
+
+      return items;
+    };
+
+    let items = [];
+
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        items = await fetchItems();
+        if (items.length) break;
+      } catch (err) {
+        console.error(`Fetch attempt ${attempt} failed:`, err);
+      }
+    }
+
+    if (!items.length) {
+      return await sock.sendMessage(
+        from,
+        { text: "No results found." },
+        { quoted: msg }
+      );
+    }
+
+    const cards = [];
+
+    for (const item of items.slice(0, 10)) {
+      let imageMessage = undefined;
+
+      if (item.thumb) {
+        const media = await prepareWAMessageMedia(
+          { image: { url: item.thumb } },
+          { upload: sock.waUploadToServer }
+        );
+        imageMessage = media.imageMessage;
+      }
+
+      cards.push({
+        body: proto.Message.InteractiveMessage.Body.create({
+          text: `🎬 ${item.title}\n⏱ ${item.duration || "-"}\n👁 ${
+            item.views || "-"
+          }`,
+        }),
+        footer: proto.Message.InteractiveMessage.Footer.create({
+          text: "─【 MIKU 】─",
+        }),
+        header: proto.Message.InteractiveMessage.Header.create({
+          hasMediaAttachment: !!imageMessage,
+          ...(imageMessage ? { imageMessage } : {}),
+        }),
+        nativeFlowMessage:
+          proto.Message.InteractiveMessage.NativeFlowMessage.create({
+            buttons: [
+              {
+                name: "quick_reply",
+                buttonParamsJson: JSON.stringify({
+                  display_text: "PLAY",
+                  id: `miku:porn:${item.link}`,
+                }),
+              },
+            ],
+          }),
+      });
+    }
+
+    const carouselMsg = generateWAMessageFromContent(
+      from,
+      {
+        viewOnceMessage: {
+          message: {
+            messageContextInfo: {
+              deviceListMetadata: {},
+              deviceListMetadataVersion: 2,
+            },
+            interactiveMessage: proto.Message.InteractiveMessage.create({
+              body: proto.Message.InteractiveMessage.Body.create({
+                text: `🔍 Results`,
+              }),
+              footer: proto.Message.InteractiveMessage.Footer.create({
+                text: "Swipe ➡️ to see more",
+              }),
+              carouselMessage:
+                proto.Message.InteractiveMessage.CarouselMessage.create({
+                  cards,
+                }),
+            }),
+          },
+        },
+      },
+      {}
+    );
+
+    await sock.relayMessage(from, carouselMsg.message, {
+      messageId: carouselMsg.key.id,
+    });
+  } catch (err) {
+    console.error(err);
+    await sock.sendMessage(
+      message.from,
+      { text: "Error while loading results." },
+      { quoted: message.raw }
+    );
+  }
+});
+
+Module({
+  on: "text",
+  package: "pornvideo",
+  description: "dasi video",
+})(async (message) => {
+  try {
+    const interactive = message.raw.message?.interactiveResponseMessage;
+    if (!interactive?.nativeFlowResponseMessage?.paramsJson) return;
+
+    const data = JSON.parse(interactive.nativeFlowResponseMessage.paramsJson);
+    console.log("log porn "+data)
+    if (!data.id?.startsWith("miku:porn:")) return;
+
+    const link = data.id.replace("miku:porn:", "");
+
+    const from = message.from;
+    const sock = message.conn;
+    const msg = message.raw;
+
+    await sock.sendMessage(from, {
+      react: {
+        text: "📥",
+        key: msg.key,
+      },
+    });
+
+    const { data: html } = await axios.get(link);
+    const $ = cheerio.load(html);
+
+    const videoUrl =
+      $('meta[itemprop="contentURL"]').attr("content") ||
+      $("video source").attr("src");
+
+    if (!videoUrl) {
+      return await sock.sendMessage(
+        from,
+        { text: "Video URL not found" },
+        { quoted: msg }
+      );
+    }
+
+    await sock.sendMessage(from, { video: { url: videoUrl } }, { quoted: msg });
+  } catch (e) {
+    console.error(e);
+    await sock.sendMessage(
+      message.from,
+      { text: "Failed to fetch video" },
+      { quoted: message.raw }
+    );
+  }
+});
