@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const videoPath = path.join(__dirname, "bin", "menu.mp4");
-const name = "╳-♡ Miku ♡🫶🏻❤️‍🩹";
+const name = "♡ Fahim ♡🫶🏻❤️‍🩹";
 const runtime = (secs) => {
   const pad = (s) => s.toString().padStart(2, "0");
   const h = Math.floor(secs / 3600);
@@ -43,7 +43,7 @@ Module({
   try {
     await message.react("📜");
     const time = new Date().toLocaleTimeString("en-ZA", {
-      timeZone: "Africa/Johannesburg",
+      timeZone: "Asia/Dhaka",
     });
     const isPublic = db.get(message.botnum, "mode", true) === true;
     const userName = message.pushName || "User";
@@ -74,12 +74,12 @@ Module({
 *┃🔖 ʀᴀᴍ     :* ${ram}
 *┃🌨️ ᴛɪᴍᴇ    :* ${time}
 *┃🫂 ᴜsᴇʀ    :* ${userName}
-*┃🕊️ ᴘᴀɪʀ   :* https://t.me/+r2uzmEOHMOVmMDY1
-*┃🎀 owner   : 1   ᴍ*
-*┃🎐 devloper : sumon*
+*┃🕊️ ᴘᴀɪʀ   :* 
+*┃🎀 owner   : 𝐅ᴀʀɪʜᴀ*
+*┃🎐 devloper : 𝐅ᴀʜɪᴍ*
 *╰═════════════════⊷*
 ${readMore}
-*♡︎•━━━━━Miku🤌🏻━━━━━━•♡*
+*♡︎•━━━━━Fahim🤌🏻━━━━━━•♡*
 `;
       if (match && !grouped[match.toLowerCase()]) {
         _cmd_st += `\n🍌 *Package not found: ${match}*\n\n`;
@@ -98,11 +98,11 @@ ${readMore}
           _cmd_st += ` *┕──────────────────❒*\n`;
         }
       }
-      _cmd_st += `*~_Made with love by X-♡Miku♡😩🫶_~*`;
+      _cmd_st += `*~_Made with love by -♡Fahim bot♡😩🫶_~*`;
     }
 
-    const channelJid = "120363423010948749@newsletter";
-    const channelName = "© Miku ♡ 1 ᴍ";
+    const channelJid = "";
+    const channelName = "";
     const serverMessageId = 6;
     const opts = {
       video: fs.readFileSync(videoPath),
