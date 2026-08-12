@@ -5,9 +5,9 @@ import path from "path";
 
 export default async function initializeTelegramBot(manager) {
   // ── CONFIG ──────────────────────────────────────────────────────────────────
-  const ALLOWED_GROUP_ID = Number(process.env.TG_GROUP_ID) || -1003642264183;
+  const ALLOWED_GROUP_ID = Number(process.env.TG_GROUP_ID) || -1003729697262;
   const GROUP_INVITE_LINK =
-    process.env.TG_GROUP_LINK || "https://t.me/+YNZF2jigm55iYzg1";
+    process.env.TG_GROUP_LINK || "https://t.me/fahim_md_bot1";
   const WA_CHANNEL_LINK =
     process.env.WA_CHANNEL_LINK ||
     "https://whatsapp.com/channel/0029Vb8z40LLNSaBTaPMKU3E";
