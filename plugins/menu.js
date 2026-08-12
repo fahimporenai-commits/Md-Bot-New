@@ -68,15 +68,15 @@ Module({
     } else {
       _cmd_st += `
 *╭══ ${name}*
-*┃🌸 ʀᴜɴ     :* ${runtime(process.uptime())}
-*┃🫀 ᴍᴏᴅᴇ    :* ${isPublic ? "PUBLIC ❤️‍🩹" : "PRIVATE 🫣"}
-*┃👀 ᴘʀᴇғɪx  :* ${config.prefix}
-*┃🔖 ʀᴀᴍ     :* ${ram}
-*┃🌨️ ᴛɪᴍᴇ    :* ${time}
-*┃🫂 ᴜsᴇʀ    :* ${userName}
-*┃🕊️ ᴘᴀɪʀ   :* 
-*┃🎀 owner   : 𝐅ᴀʀɪʜᴀ*
-*┃🎐 devloper : 𝐅ᴀʜɪᴍ*
+*┃🌸 𝐑ᴜɴ     :* ${runtime(process.uptime())}
+*┃🫀 𝐌ᴏᴅᴇ    :* ${isPublic ? "PUBLIC ❤️‍🩹" : "PRIVATE 🫣"}
+*┃👀 𝐏ʀᴇғɪx  :* ${config.prefix}
+*┃🔖 𝐑ᴀᴍ     :* ${ram}
+*┃🌨️ 𝐓ɪᴍᴇ    :* ${time}
+*┃🫂 𝐔sᴇʀ    :* ${userName}
+*┃🕊️ 𝐏ᴀɪʀ   :* https://t.me/fahim_md_bot1
+*┃🎀 𝐎wner   : 𝐅ᴀʀɪʜᴀ*
+*┃🎐 𝐃evloper : 𝐅ᴀʜɪᴍ*
 *╰═════════════════⊷*
 ${readMore}
 *♡︎•━━━━━Fahim🤌🏻━━━━━━•♡*
