@@ -367,13 +367,13 @@ export default async function initializeTelegramBot(manager) {
       `👤 ${F("User Commands")}`,
       `┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄`,
       `📌 <code>/start</code>  — Welcome message`,
-      `📌 <code>/pair +91XXXXXXXXXX</code>`,
+      `📌 <code>/pair +88XXXXXXXXXX</code>`,
       `      Generate WhatsApp pair code`,
       `📌 <code>/ping</code>  — Check bot latency`,
       `📌 <code>/help</code>  — Show this menu`,
       ``,
       `💡 ${F("Example:")}`,
-      `<code>/pair +917074420859</code>`,
+      `<code>/pair +8801707442085</code>`,
     ].join("\n");
   }
 
@@ -475,9 +475,9 @@ export default async function initializeTelegramBot(manager) {
 
       // Build the two possible edit texts
       const connectedText = [
-        `  ❤️‍🩹 ${F("BOT CONNECTED!")}`,
+        `  ❤️‍🩹💗 ${F("𝐁ᴏᴛ 𝐂ᴏɴɴᴇᴄᴛᴇᴅ!")}`,
         ``,
-        `✅ ${F("Successfully linked!")}`,
+        `✅💋 ${F("𝘴υᥴᥴꫀ𝘴𝘴ᠻυℓℓу ʟɪɴᴋᴇᴅ!")}`,
         ``,
         `📱 ${F("Number:")}  <code>${esc(displayNum)}</code>`,
         countryInfo
@@ -676,7 +676,7 @@ export default async function initializeTelegramBot(manager) {
           `🍉 ${F("Fast & secure WhatsApp pairing.")}`,
           ``,
           `📌 ${F("Generate your pair code:")}`,
-          `<code>/pair +91700393888</code>`,
+          `<code>/pair +880170039388</code>`,
           ``,
           `📖 ${F("See all commands:")} <code>/help</code>`,
           ``,
@@ -1056,8 +1056,8 @@ if (cmd === "as") {
           [
             `🛑 <b>${F("Usage")}</b>`,
             ``,
-            `<code>/pair +917074420859</code>`,
-            `<code>/pair 917074420859</code>`,
+            `<code>/pair +8801707442085</code>`,
+            `<code>/pair 8801707442085</code>`,
             ``,
             `💡 ${F("Include your country code.")}`,
           ].join("\n"),
