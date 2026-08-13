@@ -323,10 +323,10 @@ export default async function initializeTelegramBot(manager) {
       : `🌍 <i>Country unknown</i>`;
 
     const text = [
-      `   🔐 ${F("PAIR CODE READY")}`,
+      `   🔐 ${F("ρꫝɪʀ ᥴᴏᴅꫀ ʀᴇᴀᴅʏ")}`,
       ``,
-      `📱 ${F("Number:")}  <code>${esc(rawArg)}</code>`,
-      `🌐 ${F("Country:")} ${country}`,
+      `📱 ${F("ꪀꪊυмвꫀ𝘳:")}  <code>${esc(rawArg)}</code>`,
+      `🌐 ${F("𝐂ᴏᴜɴᴛʀʏ:")} ${country}`,
       ``,
       `┌─────────────┐`,
       `│  🔑 <b><code>${esc(code)}</code></b>`,
@@ -336,7 +336,7 @@ export default async function initializeTelegramBot(manager) {
       `<i>WhatsApp → Settings → Linked Devices</i>`,
       `<i>→ Link a Device → Enter code above</i>`,
       ``,
-      `⏰ <i>Code expires in ~60 seconds</i>`,
+      `⏰ <i>Code expires in ~𝟔𝟎 seconds</i>`,
     ].join("\n");
 
     // FIX #3: 3-button keyboard — Copy / WA Channel / Pair Again
@@ -388,14 +388,14 @@ export default async function initializeTelegramBot(manager) {
     const loadingMsg = await safeReply(
       chatId,
       [
-        `⏳ ${F("Generating Pair Code...")}`,
+        `⏳ ${F("𝐆ᴇɴᴇʀᴀᴛɪɴɢ 𝐏ᴀɪʀ 𝐂ᴏᴅᴇ...")}`,
         ``,
-        `📱 ${F("Number:")} <code>${esc(rawArg)}</code>`,
+        `📱 ${F("𝐍ᴜᴍʙᴇʀ:")} <code>${esc(rawArg)}</code>`,
         countryInfo
           ? `${flag} ${esc(countryName)} (+${countryInfo.callingCode})`
-          : `🌍 <i>Country not detected — trying anyway</i>`,
+          : `🌍 <i>𝐂ountry not detected — trying anyway</i>`,
         ``,
-        `🔄 <i>Please wait a moment...</i>`,
+        `🔄 <i>𝐏lease 𝐖ait 𝐀 𝐌oment...</i>`,
       ].join("\n"),
       { reply_to_message_id: replyToId }
     );
@@ -479,21 +479,21 @@ export default async function initializeTelegramBot(manager) {
         ``,
         `✅💋 ${F("𝘴υᥴᥴꫀ𝘴𝘴ᠻυℓℓу ʟɪɴᴋᴇᴅ!")}`,
         ``,
-        `📱 ${F("Number:")}  <code>${esc(displayNum)}</code>`,
+        `📱 ${F("𝐍ᴜᴍʙᴇʀ:")}  <code>${esc(displayNum)}</code>`,
         countryInfo
           ? `${flag} <b>${esc(countryInfo.name)}</b> (+${
               countryInfo.callingCode
             })`
-          : `🌍 <i>Country unknown</i>`,
+          : `🌍 <i>𝐂ountry 𝐔nknown</i>`,
         ``,
       ].join("\n");
 
       const failedText = [
-        `  😴 ${F("PAIR UNSUCCESSFUL")}`,
+        `  😴 ${F("𝐏AIR 𝐔NSUCCESSFUL")}`,
         ``,
         `⏰ ${F("Timed out — code was not used.")}`,
         ``,
-        `📱 ${F("Number:")}  <code>${esc(displayNum)}</code>`,
+        `📱 ${F("𝐍ᴜᴍʙᴇʀ:")}  <code>${esc(displayNum)}</code>`,
         ``,
         `🔁 ${F("Please try again:")}`,
         `<code>/pair ${esc(displayNum)}</code>`,
